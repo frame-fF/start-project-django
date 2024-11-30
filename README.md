@@ -286,7 +286,7 @@ module.exports = {
   ],
 }
 ```
-### Create static/npm_static/input.css 
+### Create static/flowbite/input.css 
 ```python
 @tailwind base;
 @tailwind components;
