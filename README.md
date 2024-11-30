@@ -54,6 +54,10 @@ TEMPLATES = [
 from django.utils.translation import gettext_lazy as _
 ```
 ```python
+# django-admin makemessages --all --ignore=venv
+# django-admin compilemessages
+```
+```python
 LANGUAGES = (
     ('en', _('English')),
     ('th', _('Thai')),
@@ -76,6 +80,8 @@ USE_TZ = True
 ```
 ```python
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+
+SESSION_CACHE_ALIAS = "default"
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 ```
@@ -108,7 +114,9 @@ urlpatterns += staticfiles_urlpatterns()
 ### Create urls.py in App
 ```python
 from django.urls import path
-from . import views
+from mywebsite import views
+
+app_name = 'mywebsite'
 
 urlpatterns = [
     path('', views.index, name='index'),
