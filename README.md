@@ -58,6 +58,11 @@ from django.utils.translation import gettext_lazy as _
 # django-admin compilemessages
 ```
 ```python
+# fix window
+# https://mlocati.github.io/articles/gettext-iconv-windows.html
+# add path
+```
+```python
 LANGUAGES = (
     ('en', _('English')),
     ('th', _('Thai')),
