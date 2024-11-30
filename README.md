@@ -66,6 +66,11 @@ from django.utils.translation import gettext_lazy as _
 create folder locale
 ```
 ```python
+MIDDLEWARE = [
+    'django.middleware.locale.LocaleMiddleware',
+]
+```
+```python
 LANGUAGES = (
     ('en', _('English')),
     ('th', _('Thai')),
