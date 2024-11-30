@@ -138,11 +138,15 @@ pip install whitenoise
 ```
 ```python
 MIDDLEWARE = [
-    "whitenoise.middleware.WhiteNoiseMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 ```
 ```python
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 ```
 ### django django-cleanup
 ```python
