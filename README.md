@@ -210,6 +210,8 @@ SECRET_KEY=xxxxxxxxx
 ALLOWED_HOSTS='127.0.0.1'
 
 CSRF_TRUSTED_ORIGINS='http://127.0.0.1:8000/'
+
+APP_DIRS=on
 ```
 ```python
 import environ
@@ -225,6 +227,31 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',')
 CSRF_TRUSTED_ORIGINS = env('CSRF_TRUSTED_ORIGINS').split(',')
+```
+```python
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [Path.joinpath(BASE_DIR, 'templates')],
+        'APP_DIRS': env('APP_DIRS'),
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+if not env('APP_DIRS'):
+    TEMPLATES[0]['OPTIONS']['loaders'] = [
+        ('django.template.loaders.cached.Loader', [
+            'django.template.loaders.filesystem.Loader',
+            'django.template.loaders.app_directories.Loader',
+        ]),
+    ]
 ```
 ### Create NPM
 ```python
