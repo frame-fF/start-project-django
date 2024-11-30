@@ -18,7 +18,10 @@ pip install django
 ```
 ### Create Project
 ```python
-django-admin startproject projectmanager
+create folder project
+```
+```python
+django-admin startproject config .
 ```
 ### Create App
 ```python
@@ -48,7 +51,28 @@ TEMPLATES = [
 ]
 ```
 ```python
+from django.utils.translation import gettext_lazy as _
+```
+```python
+LANGUAGES = (
+    ('en', _('English')),
+    ('th', _('Thai')),
+)
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale/',
+]
+```
+```python
+LANGUAGE_CODE = 'th'
+
 TIME_ZONE = 'Asia/Bangkok'
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = True
 ```
 ```python
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
