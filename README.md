@@ -186,8 +186,12 @@ pip install django-environ
 ### Create .env
 ```python
 DEBUG=off
+
 SECRET_KEY=xxxxxxxxx
-ALLOWED_HOSTS="127.0.0.1"
+
+ALLOWED_HOSTS='127.0.0.1'
+
+CSRF_TRUSTED_ORIGINS='http://127.0.0.1:8000/'
 ```
 ```python
 import environ
@@ -210,10 +214,9 @@ CSRF_TRUSTED_ORIGINS = env('CSRF_TRUSTED_ORIGINS').split(',')
 ```
 ```python
 npm install -D tailwindcss
-npm install -D @tailwindcss/typography
-npm i -D flowbite
-npm i -D flowbite-typography
-npm  i -D clean-css-cli
+npm install -D flowbite
+npm install -D flowbite-typography
+npm install -D clean-css-cli
 ```
 ```python
 npx tailwindcss init
@@ -222,9 +225,8 @@ npx tailwindcss init
 ```python
 {
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tailwind build ../static/npm_static/input.css -o ../static/npm_static/output.css && cleancss -o ../static/npm_static/output.min.css ../static/npm_static/output.css",
-    "build-test": "tailwindcss -i ../static/npm_static/input.css -o ../static/npm_static/output.min.css --watch"
+    "build-test": "tailwindcss -i ../static/flowbite/input.css -o ../static/flowbite/output.min.css --watch",
+    "build-product": "tailwindcss -o ../static/flowbite/output.min.css --minify && cleancss -o ../static/flowbite/output.min.css ../static/flowbite/output.min.css"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
@@ -239,34 +241,48 @@ npx tailwindcss init
 ```javascript
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+
   darkMode: 'class',
+
   future: {
     removeDeprecatedGapUtilities: true,
     purgeLayersByDefault: true,
   },
+
   content: [
     "../templates/**/*.{html,js,css}",
     "../templates/*.{html,js,css}",
     "./templates/**/*.{html,js,css}",
     "./templates/*.{html,js,css}",
-    "./node_modules/flowbite/**/*.js",
-    '../node_modules/flowbite/**/*.js'
-    // "../member/forms.py",
+    "../apps/**/*.{html,js,css}",
+    "../apps/*.{html,js,css}",  
+    "./apps/**/*.{html,js,css}",
+    "./apps/*.{html,js,css}",
+    "./node_modules/**/*.{html,js,css}",
+    "../node_modules/**/*.{html,js,css}",  
+    "../static/**/*.{html,js,css}",
+    "../static/*.{html,js,css}",
+    "./static/**/*.{html,js,css}",
+    "./static/*.{html,js,css}",
+    // "./node_modules/flowbite/**/*.{html,js,css}",
+    // "../node_modules/flowbite/**/*.{html,js,css}",
+    // "../flowbite/**/*.{html,js,css}",
+    // "../flowbite/*.{html,js,css}",  
+    // "./flowbite/**/*.{html,js,css}",
+    // "./flowbite/*.{html,js,css}",  
   ],
   theme: {
-    colors: {
-      'custom-green': '#06C755',
-      primary: { "50": "#eff6ff", "100": "#dbeafe", "200": "#bfdbfe", "300": "#93c5fd", "400": "#60a5fa", "500": "#3b82f6", "600": "#2563eb", "700": "#1d4ed8", "800": "#1e40af", "900": "#1e3a8a", "950": "#172554" }
-    },
-    fontFamily: {
-    },
     extend: {
-    }
+      colors: {
+        'custom-green': '#06C755',
+        'custom-black': '#000000',
+        primary: {"50":"#eff6ff","100":"#dbeafe","200":"#bfdbfe","300":"#93c5fd","400":"#60a5fa","500":"#3b82f6","600":"#2563eb","700":"#1d4ed8","800":"#1e40af","900":"#1e3a8a","950":"#172554"}
+      },
+    },
   },
   plugins: [
-    require('@tailwindcss/typography'),
-    require('flowbite-typography'),
     require('flowbite/plugin'),
+    require('flowbite-typography'),
   ],
 }
 ```
