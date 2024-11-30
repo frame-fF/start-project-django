@@ -210,7 +210,7 @@ CSRF_TRUSTED_ORIGINS = env('CSRF_TRUSTED_ORIGINS').split(',')
 ```
 ### Create NPM
 ```python
- npm
+ flowbite
 ```
 ```python
 npm install -D tailwindcss
