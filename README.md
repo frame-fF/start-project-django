@@ -64,6 +64,8 @@ from django.utils.translation import gettext_lazy as _
 ```
 ```python
 create folder locale
+-en
+-th
 ```
 ```python
 MIDDLEWARE = [
