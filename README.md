@@ -262,6 +262,7 @@ npm install -D tailwindcss
 npm install -D flowbite
 npm install -D flowbite-typography
 npm install -D clean-css-cli
+npm install -D @tiptap/core @tiptap/pm @tiptap/starter-kit
 ```
 ```python
 npx tailwindcss init
