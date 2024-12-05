@@ -327,9 +327,7 @@ module.exports = {
     },
   },
   plugins: [
-    require('flowbite/plugin')({
-      wysiwyg: true,
-    }),
+    require('flowbite/plugin'),
     require('flowbite-typography'),
   ],
 }
