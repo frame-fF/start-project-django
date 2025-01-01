@@ -430,6 +430,10 @@ networks:
 
 `python -m pip install -U --force pip`
 
+`Get-ChildItem -Path . -Recurse -Filter "*.py" | Where-Object { $_.FullName -match "\\migrations\\" -and $_.Name -ne "__init__.py" } | Remove-Item`
+
+`Get-ChildItem -Path . -Recurse -Filter "*.pyc" | Where-Object { $_.FullName -match "\\migrations\\" } | Remove-Item`
+
 ### Database
 ```python
 DATABASES = {
