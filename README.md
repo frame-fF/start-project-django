@@ -259,6 +259,9 @@ if not env('APP_DIRS'):
 pip install django-redis
 ```
 ```python
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+```
+```python
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
