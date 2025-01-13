@@ -253,6 +253,24 @@ if not env('APP_DIRS'):
         ]),
     ]
 ```
+
+### Create RedisCache
+```python
+pip install django-redis
+```
+```python
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": f"redis://{env('REDIS_HOST')}/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "COMPRESSOR": "django_redis.compressors.zlib.ZlibCompressor",
+        }
+    }
+}
+```
+
 ### Create NPM
 ```python
  flowbite
