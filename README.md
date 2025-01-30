@@ -464,6 +464,8 @@ networks:
     name: frame_dev
 ```
 ### คำสั่งอื่นๆ
+`python manage.py check --deploy`
+
 `python manage.py makemigrations`
 
 `python manage.py migrate`
