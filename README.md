@@ -180,16 +180,29 @@ INSTALLED_APPS = (
 pip install django-storages boto3
 ```
 ```python
-DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+    "default": {
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+    },
+}
 ```
 ```python
 AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME")
 
-AWS_S3_ENDPOINT_URL = f"https://{AWS_S3_REGION_NAME}.vultrobjects.com"
+AWS_S3_ENDPOINT_URL = env("AWS_S3_ENDPOINT_URL")
 
 AWS_S3_USE_SSL = True
 
 AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
+AWS_LOCATION = env("AWS_LOCATION")
 
 AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
 
