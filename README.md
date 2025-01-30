@@ -299,7 +299,7 @@ LOGGING = {
  flowbite
 ```
 ```python
-npm install -D tailwindcss
+npm install -D tailwindcss @tailwindcss/cli
 npm install -D flowbite
 npm install -D flowbite-typography
 npm install -D clean-css-cli
@@ -312,9 +312,9 @@ npx tailwindcss init
 ```python
 {
   "scripts": {
-    "build-test": "tailwindcss -i ../static/flowbite/input.css -o ../static/flowbite/output.min.css --watch",
-    "build-product": "tailwindcss -o ../static/flowbite/output.min.css --minify && cleancss -o ../static/flowbite/output.min.css ../static/flowbite/output.min.css"
-  },
+    "build-test": "npx @tailwindcss/cli -i ../static/flowbite/input.css -o ../static/flowbite/output.min.css --watch",
+    "build-product": "npx @tailwindcss/cli -o ../static/flowbite/output.min.css --minify && cleancss -o ../static/flowbite/output.min.css ../static/flowbite/output.min.css"
+  }
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
     "clean-css-cli": "^5.6.2",
