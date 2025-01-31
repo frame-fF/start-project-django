@@ -316,7 +316,6 @@ npm install -D tailwindcss @tailwindcss/cli
 npm install -D flowbite
 npm install -D flowbite-typography
 npm install -D clean-css-cli
-npm install -D @tiptap/core @tiptap/pm @tiptap/starter-kit
 ```
 ```python
 npx tailwindcss init
@@ -325,15 +324,15 @@ npx tailwindcss init
 ```python
 {
   "scripts": {
-    "build-test": "npx @tailwindcss/cli -i ../static/flowbite/input.css -o ../static/flowbite/output.min.css --watch",
+    "build-test": "npx @tailwindcss/cli -i ./src/input.css -o ../static/flowbite/output.min.css --watch",
     "build-product": "npx @tailwindcss/cli -o ../static/flowbite/output.min.css --minify && cleancss -o ../static/flowbite/output.min.css ../static/flowbite/output.min.css"
-  }
+  },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.10",
-    "clean-css-cli": "^5.6.2",
-    "flowbite": "^1.8.1",
-    "flowbite-typography": "^1.0.3",
-    "tailwindcss": "^3.3.3"
+    "@tailwindcss/cli": "^4.0.1",
+    "clean-css-cli": "^5.6.3",
+    "flowbite": "^3.0.0",
+    "flowbite-typography": "^1.0.5",
+    "tailwindcss": "^4.0.1"
   }
 }
 ```
@@ -386,11 +385,10 @@ module.exports = {
   ],
 }
 ```
-### Create static/flowbite/input.css 
+### Create /flowbite/src/input.css 
 ```python
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../tailwind.config.js";
 ```
 ### run
 ```python
