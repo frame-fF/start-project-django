@@ -325,7 +325,7 @@ npx tailwindcss init
 {
   "scripts": {
     "build-test": "npx @tailwindcss/cli -i ./src/input.css -o ../static/flowbite/output.min.css --watch",
-    "build-product": "npx @tailwindcss/cli -o ../static/flowbite/output.min.css --minify && cleancss -o ../static/flowbite/output.min.css ../static/flowbite/output.min.css"
+    "build-product": "npx @tailwindcss/cli -i ./src/input.css -o ../static/flowbite/output.min.css --minify && cleancss -o ../static/flowbite/output.min.css ../static/flowbite/output.min.css"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.0.1",
