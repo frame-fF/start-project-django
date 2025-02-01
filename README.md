@@ -497,6 +497,27 @@ DATABASES = {
     }
 }
 ```
+### PostgreSQL 
+```python
+pip install psycopg2
+```
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': env('DB_HOST'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'PORT': env('DB_PORT'),
+        'NAME': env('DB_NAME'),
+        'CONN_MAX_AGE': 600, 
+        'OPTIONS': {
+            'options': '-c search_path=public,other_schema',
+        },
+    },
+}
+```
 ### Mysql
 ```python
 pip install mysqlclient
