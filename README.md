@@ -274,7 +274,7 @@ SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": f"redis://{env('REDIS_HOST')}/1",
+        "LOCATION": f"redis://{env('REDIS_HOST')}/{env('REDIS_PORT')}",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             "COMPRESSOR": "django_redis.compressors.zlib.ZlibCompressor",
