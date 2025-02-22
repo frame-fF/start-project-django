@@ -216,15 +216,11 @@ pip install django-environ
 ```
 ### Create .env
 ```python
-DEBUG=off
+DEBUG=on
 
-SECRET_KEY=xxxxxxxxx
+SECRET_KEY=xxxxxx
 
-ALLOWED_HOSTS='127.0.0.1'
-
-CSRF_TRUSTED_ORIGINS='http://127.0.0.1:8000/'
-
-APP_DIRS=on
+DOMAIN_NAME=127.0.0.1
 ```
 ```python
 import environ
@@ -238,15 +234,15 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
-ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',')
-CSRF_TRUSTED_ORIGINS = env('CSRF_TRUSTED_ORIGINS').split(',')
+ALLOWED_HOSTS = [env('DOMAIN_NAME')]
+CSRF_TRUSTED_ORIGINS = [f"https://{env('DOMAIN_NAME')}", f"http://{env('DOMAIN_NAME')}"]
 ```
 ```python
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [Path.joinpath(BASE_DIR, 'templates')],
-        'APP_DIRS': env('APP_DIRS'),
+        'APP_DIRS': env('DEBUG'),
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -258,7 +254,7 @@ TEMPLATES = [
     },
 ]
 
-if not env('APP_DIRS'):
+if not env('DEBUG'):
     TEMPLATES[0]['OPTIONS']['loaders'] = [
         ('django.template.loaders.cached.Loader', [
             'django.template.loaders.filesystem.Loader',
