@@ -3,6 +3,8 @@ step start project django
 
 ### virtualenv
 ```python
+py -3.12 -m pip install virtualenv
+py -3.12 -m virtualenv .venv    
 virtualenv venv
 or
 python -m virtualenv venv
