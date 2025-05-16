@@ -496,6 +496,8 @@ networks:
 
 `Get-ChildItem -Path . -Recurse -Filter "*.pyc" | Where-Object { $_.FullName -match "\\migrations\\" } | Remove-Item`
 
+`Get-ChildItem -Path . -Include __pycache__ -Recurse -Directory | Remove-Item -Recurse -Force`
+
 ### Database
 ```python
 DATABASES = {
