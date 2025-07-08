@@ -1,6 +1,16 @@
 # start-project-django
 step start project django
 
+### UV
+```python
+uv self update
+uv python list
+uv python install xxxxx
+
+uv init xxx --python 3.12
+uv add django
+```
+
 ### virtualenv
 ```python
 py -3.12 -m pip install virtualenv
