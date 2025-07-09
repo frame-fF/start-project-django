@@ -1,6 +1,12 @@
 # start-project-django
 step start project django
 
+### Formatter
+```python
+black .   
+djlint .  --reformat --profile=django
+```
+
 ### UV
 ```python
 uv self update
