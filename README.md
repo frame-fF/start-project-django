@@ -562,6 +562,114 @@ DATABASES = {
 }
 ```
 
+### channels
+```python
+pip install channels
+pip install channels-redis
+pip install 'uvicorn[standard]'   
+
+
+INSTALLED_APPS = [
+    # ...
+    'channels',
+    # ...
+]
+
+
+ASGI_APPLICATION = 'config.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [(env('REDIS_HOST'), env('REDIS_PORT'))],
+        },
+    },
+}
+
+
+asgi.py **
+
+import os
+from django.core.asgi import get_asgi_application
+from channels.routing import ProtocolTypeRouter, URLRouter
+from channels.security.websocket import AllowedHostsOriginValidator
+from django.core.asgi import get_asgi_application
+
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
+
+application = ProtocolTypeRouter({
+    "http": get_asgi_application(),
+    "websocket": AllowedHostsOriginValidator(
+            URLRouter(
+                ''
+            )
+        ),
+})
+
+create consumers.py **
+
+import json
+from channels.generic.websocket import WebsocketConsumer
+
+
+class ChatConsumer(WebsocketConsumer):
+    def connect(self):
+        self.accept()
+    def disconnect(self, close_code):
+        pass
+    def receive(self, text_data):
+        text_data_json = json.loads(text_data)
+        message = text_data_json['message']
+        self.send(text_data=json.dumps({
+            'message': message
+        }))
+
+
+create routing.py **
+
+import json
+from channels.generic.websocket import WebsocketConsumer
+
+
+class ChatConsumer(WebsocketConsumer):
+    def connect(self):
+        self.accept()
+    def disconnect(self, close_code):
+        pass
+    def receive(self, text_data):
+        text_data_json = json.loads(text_data)
+        message = text_data_json['message']
+        self.send(text_data=json.dumps({
+            'message': message
+        }))
+
+fix asgi.py **
+
+import os
+from django.core.asgi import get_asgi_application
+from channels.routing import ProtocolTypeRouter, URLRouter
+from channels.security.websocket import AllowedHostsOriginValidator
+from django.core.asgi import get_asgi_application
+from apps.notification.routing import application as notification_routing
+
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
+
+application = ProtocolTypeRouter({
+    "http": get_asgi_application(),
+    "websocket": AllowedHostsOriginValidator(
+            URLRouter(
+                notification_routing
+            )
+        ),
+})
+
+
+
+```
+
 ### celery
 ```python
 pip install celery
