@@ -562,6 +562,81 @@ DATABASES = {
 }
 ```
 
+### celery
+```python
+pip install celery
+pip install django-celery-results
+pip install django-celery-beat
+
+
+INSTALLED_APPS = (
+    ...,
+    'django_celery_results',
+    'django_celery_beat'
+)
+
+python manage.py migrate
+
+"fix window"
+
+pip install gevent
+
+celery -A config worker -l info -P gevent
+celery -A config beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
+
+celery -A config worker -l info
+_______________________________________
+
+create celery.py ** 
+
+import os
+
+from celery import Celery
+
+# Set the default Django settings module for the 'celery' program.
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+
+app = Celery('config')
+
+# Using a string here means the worker doesn't have to serialize
+# the configuration object to child processes.
+# - namespace='CELERY' means all celery-related configuration keys
+#   should have a `CELERY_` prefix.
+app.config_from_object('django.conf:settings', namespace='CELERY')
+
+# Load task modules from all registered Django app configs.
+app.autodiscover_tasks()
+
+
+@app.task(bind=True)
+def debug_task(self):
+    print(f'Request: {self.request!r}')
+
+_______________________________________________
+
+__init__.py
+
+from .celery import app as celery_app
+
+__all__ = ('celery_app',)
+
+____________________________________________________
+
+
+CELERY_BROKER_URL = f"redis://{env('REDIS_HOST')}/{env('REDIS_PORT')}"
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Bangkok'
+
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_CACHE_BACKEND = 'default'
+CELERY_RESULT_EXTENDED = True
+
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
+
+```
 
 
 ### PowerShell with the "Run as Administrator" 
