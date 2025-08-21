@@ -486,6 +486,8 @@ networks:
     name: frame_dev
 ```
 ### คำสั่งอื่นๆ
+`uvicorn config.asgi:application --host 0.0.0.0 --port 8000 --reload --reload-include *.css --reload-include *.html --reload-include *.js`
+
 `python manage.py check --deploy`
 
 `python manage.py makemigrations`
