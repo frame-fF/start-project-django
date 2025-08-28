@@ -1,6 +1,10 @@
 # start-project-django
 step start project django
 
+### SSL
+```python
+ssh -L 127.0.0.1:5432:127.0.0.1:5432 -L 127.0.0.1:6379:127.0.0.1:6379 -L 127.0.0.1:3306:127.0.0.1:3306 root@188.166.233.122
+```
 ### Formatter
 ```python
 black .   
