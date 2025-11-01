@@ -7,7 +7,8 @@ ssh -L 127.0.0.1:5432:127.0.0.1:5432 -L 127.0.0.1:6379:127.0.0.1:6379 -L 127.0.0
 ```
 ### Formatter
 ```python
-black .   
+black .
+djlint ./**/*.html --reformat --profile=django 
 djlint .  --reformat --profile=django
 ```
 
