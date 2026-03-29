@@ -521,6 +521,10 @@ networks:
 
 `Get-ChildItem -Path . -Include __pycache__ -Recurse -Directory | Remove-Item -Recurse -Force`
 
+`docker inspect -f '{{ json .Mounts }}' fb3b10dd610b`
+
+`docker inspect fb3b10dd610b`
+
 ### Database
 ```python
 DATABASES = {
