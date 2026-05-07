@@ -1,9 +1,18 @@
 # start-project-django
 step start project django
 
+### แก้ไขไฟล์ Windows Hosts
+```python
+1. คลิกปุ่ม Start แล้วพิมพ์ Notepad คลิกขวาที่ Notepad แล้วเลือก "Run as administrator"
+2. (เรียกใช้ในฐานะผู้ดูแลระบบ)ใน Notepad ไปที่ File > Open แล้วเปิดไฟล์ที่พาธนี้:C:\Windows\System32\drivers\etc\hosts(หากหาไม่เจอ ให้เปลี่ยนตรงมุมขวาล่างจาก "Text Documents (.txt)" เป็น "All Files (.)")*
+3. เพิ่มบรรทัดนี้ที่ท้ายไฟล์ 
+127.0.0.1   app.localhost
+127.0.0.1   customer.localhost
+```
+
 ### SSL
 ```python
-ssh -L 127.0.0.1:5432:127.0.0.1:5432 -L 127.0.0.1:6379:127.0.0.1:6379 -L 127.0.0.1:3306:127.0.0.1:3306 root@188.166.233.122
+ssh -L 127.0.0.1:5432:127.0.0.1:5432 -L 127.0.0.1:6379:127.0.0.1:6379 -L 127.0.0.1:3306:127.0.0.1:3306 root@117.18.125.97
 ```
 ### Formatter
 ```python
