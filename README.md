@@ -32,6 +32,8 @@ uv python install xxxxx
 
 uv init xxx --python 3.12
 uv add django
+
+uv sync --upgrade
 ```
 
 ### virtualenv
