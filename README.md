@@ -114,6 +114,11 @@ create folder locale
 MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
 ]
+
+"django.middleware.security.SecurityMiddleware",
+"django.contrib.sessions.middleware.SessionMiddleware",
+"django.middleware.locale.LocaleMiddleware", <--- อยู่ก่อน CommonMiddleware เสมอ
+"django.middleware.common.CommonMiddleware",
 ```
 ```python
 LANGUAGES = (
