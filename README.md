@@ -137,6 +137,8 @@ python manage.py compilemessages
 # fix window
 # https://mlocati.github.io/articles/gettext-iconv-windows.html
 # add path
+หรือ
+winget install --id mlocati.GetText
 ```
 ```python
 create folder locale
