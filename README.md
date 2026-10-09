@@ -36,6 +36,22 @@ uv add django
 uv sync --upgrade
 ```
 
+### ruff
+```python
+uv add --dev ruff
+uv run ruff check --fix
+uv run ruff format
+
+เพิ่มใส่ pyproject.toml
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "DJ"]
+
+[tool.ruff.lint.per-file-ignores]
+"**/migrations/*.py" = ["E501"]
+
+```
+
 ### virtualenv
 ```python
 py -3.12 -m pip install virtualenv
