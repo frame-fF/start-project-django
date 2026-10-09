@@ -44,6 +44,8 @@ select = ["E4", "E7", "E9", "F", "I", "DJ"]
 [tool.ruff.lint.per-file-ignores]
 "**/migrations/*.py" = ["E501"]
 
+[tool.ruff]
+extend-exclude = ["**/migrations/*.py"]
 ```
 
 ### Formatter djlint
