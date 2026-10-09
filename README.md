@@ -17,12 +17,6 @@ ssh -L 127.0.0.1:5432:127.0.0.1:5432 -L 127.0.0.1:6379:127.0.0.1:6379 -L 127.0.0
 ```python
 ssh -L 127.0.0.1:5432:127.0.0.1:5432 -L 127.0.0.1:6379:127.0.0.1:6379 -L 127.0.0.1:3306:127.0.0.1:3306 root@117.18.125.97
 ```
-### Formatter
-```python
-black .
-djlint ./**/*.html --reformat --profile=django 
-djlint .  --reformat --profile=django
-```
 
 ### UV
 ```python
@@ -36,7 +30,7 @@ uv add django
 uv sync --upgrade
 ```
 
-### ruff
+### formatter ruff
 ```python
 uv add --dev ruff
 uv run ruff check --fix
@@ -50,6 +44,29 @@ select = ["E4", "E7", "E9", "F", "I", "DJ"]
 [tool.ruff.lint.per-file-ignores]
 "**/migrations/*.py" = ["E501"]
 
+```
+
+### Formatter djlint
+
+```python
+black .
+djlint ./**/*.html --reformat --profile=django 
+djlint .  --reformat --profile=django
+```
+
+```python
+uv add --dev djlint
+
+ตั้งค่าใน pyproject.toml:
+
+[tool.djlint]
+profile = "django"
+indent = 2
+
+
+uv run djlint . --lint                 # ตรวจ
+uv run djlint . --check                # ดูว่าไฟล์ไหนต้องจัดรูปแบบ (ไม่แก้)
+uv run djlint . --reformat             # จัดรูปแบบและแก้ไฟล์
 ```
 
 ### virtualenv
