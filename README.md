@@ -126,6 +126,8 @@ TEMPLATES = [
 from django.utils.translation import gettext_lazy as _
 ```
 ```python
+uv run python manage.py makemessages -l th --ignore=.venv
+
 uv run  manage.py makemessages --all --ignore=venv --ignore=models_test.py
 uv run  manage.py compilemessages
 
